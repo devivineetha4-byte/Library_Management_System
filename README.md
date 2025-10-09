@@ -1,95 +1,173 @@
-Library Management System
+# 📚 Library Management System
 
-Overview
+[![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=node.js&logoColor=white)](https://nodejs.org/)
+[![Express](https://img.shields.io/badge/Express.js-000000?style=flat-square&logo=express&logoColor=white)](https://expressjs.com/)
+[![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)](https://reactjs.org/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-336791?style=flat-square&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
+[![Prisma](https://img.shields.io/badge/Prisma-2D3748?style=flat-square&logo=prisma&logoColor=white)](https://www.prisma.io/)
 
-This project is a simplified Library Management System that includes a database model and a set of CRUD RESTful APIs for managing books, members, and book issuance records. Additionally, a dashboard UI is provided to track books pending for return on a given day.
 
-Features
+A full-stack Library Management System built with **Node.js, Express.js, Prisma ORM, PostgreSQL,** and **React.js**, designed to manage **books, members, and book issuance records** efficiently.  
+It provides **secure RESTful APIs** and a **dashboard UI** to track books pending for return.
 
-Database Model: Hosted on a chosen database.
 
-CRUD RESTful APIs: Implemented for Member, Book, and Issuance entities.
+## 🏛️ Overview
 
-Security: APIs include a security mechanism to prevent unauthorized access (e.g., API keys).
+The **Library Management System (LMS)** simplifies library operations by offering:
 
-Standard API Naming: API endpoints follow a structured format.
+- **CRUD APIs** for Members, Books, and Issuances (including deletion).  
+- **API security** using API keys to prevent unauthorized access.  
+- **Dashboard UI** for tracking members with books due for return.  
+- **Sample data** for quick testing and demonstration.  
 
-Dashboard UI: Displays members with books pending for return.
+Ideal for small libraries or as a learning project for full-stack development.
 
-Sample Data: Pre-loaded data for testing.
 
-Database Model
+## 🗃️ Database Model
 
-The entity-relationship model for the system is available at: Library Management System Model
+The LMS has three main entities:
 
-API Endpoints
+1. **Member** – Stores information about library members.  
+2. **Book** – Contains details about books in the library.  
+3. **Issuance** – Tracks which member borrowed which book and its return status.
 
-Member API
+Prisma is used as the **ORM** to simplify database access, migrations, and querying.
 
-GET /member/{id} - Fetch details of a specific member.
 
-POST /member - Add a new member.
+## 🚀 API Endpoints
 
-PUT /member/{id} - Update an existing member.
+<details>
+<summary>👥 Member API</summary>
 
-Book API
+| Method | Endpoint       | Description                  |
+|--------|----------------|------------------------------|
+| GET    | `/member/{id}` | Fetch details of a member    |
+| POST   | `/member`      | Add a new member             |
+| PUT    | `/member/{id}` | Update member details        |
+| DELETE | `/member/{id}` | Delete a member              |
 
-GET /book/{id} - Fetch details of a specific book.
+</details>
 
-POST /book - Add a new book.
+<details>
+<summary>📘 Book API</summary>
 
-PUT /book/{id} - Update an existing book.
+| Method | Endpoint       | Description                  |
+|--------|----------------|------------------------------|
+| GET    | `/book/{id}`   | Fetch details of a book      |
+| POST   | `/book`        | Add a new book               |
+| PUT    | `/book/{id}`   | Update book information      |
+| DELETE | `/book/{id}`   | Delete a book                |
 
-Issuance API
+</details>
 
-GET /issuance/{id} - Fetch details of a specific issuance.
+<details>
+<summary>📦 Issuance API</summary>
 
-POST /issuance - Issue a book to a member.
+| Method | Endpoint        | Description                  |
+|--------|-----------------|------------------------------|
+| GET    | `/issuance/{id}`| Get details of a specific issuance |
+| POST   | `/issuance`     | Issue a book to a member     |
+| PUT    | `/issuance/{id}`| Update issuance details      |
+| DELETE | `/issuance/{id}`| Delete an issuance record    |
 
-PUT /issuance/{id} - Update issuance details.
+</details>
 
-Security Mechanism
+## 🛠️ Technologies Used
 
-API requests require an API key for authorization.
+| Layer          | Technology           |
+|----------------|-------------------|
+| Backend        | Node.js, Express.js |
+| Database       | PostgreSQL          |
+| Frontend       | React.js            |
+| Authentication | API Keys            |
 
-Unauthorized requests are blocked.
 
-Dashboard UI
+## ⚙️ Setup Instructions
 
-A simple frontend displays members with books due for return on a given day.
+### Backend Setup
 
-Technologies Used
+1. **Clone the repository**
 
-Backend: Node.js/Express (or Python Flask/Django)
+   ```bash
+   git clone https://github.com/your-username/library-management-system.git
 
-Database: PostgreSQL/MySQL/MongoDB
+   cd library-management-system/backend
+    ```
 
-Frontend: React.js/Vue.js
+2. **Install dependencies**
 
-Authentication: API Keys
+    ```bash
+    npm install
+    ```
 
-Setup Instructions
+3. **Configure environment variables**
 
-Clone the repository.
+    Create a .env file in the backend root:
 
-Configure the database connection.
+    ```bash
+    DATABASE_URL=postgresql://username:password@localhost:5432/library_db
+    API_KEY=your_secret_api_key
+    PORT=5000
+    ```
 
-Run database migrations to set up tables.
+4. **Run database migrations**
 
-Start the backend server.
+    ```bash
+    npx prisma migrate dev
+    ```
 
-Launch the frontend dashboard.
+5. **Start the backend server**
 
-Future Enhancements
+    ```bash
+    node server
+    ```
 
-Implement soft delete for entities instead of hard deletion.
+    Server runs at http://localhost:5004.
 
-Add role-based access control.
+### Frontend Setup
 
-Implement email notifications for due book returns.
+1. **Navigate to frontend folder**
 
-Author
+    ```bash
+    cd ../frontend
+    ```
 
-Developed as part of a Library Management System project.
+2. **Install dependencies**
 
-Solution for Task 2 is in Backend in prisma folder library_queries.sql file.
+    ```bash
+    npm install
+    ```
+
+3. **Start the frontend server**
+
+    ```bash
+    npm run dev
+    ```
+
+    Dashboard runs at http://localhost:3000.
+
+## 🧪 Sample Data
+
+- Members: John Doe, Jane Smith
+
+- Books: “To Kill a Mockingbird”, “1984”
+
+- Issuances: Sample issued books with due dates
+
+## 🚧 Future Enhancements
+
+- 🗑️ Soft delete for entities.
+
+- 🔐 Role-based access control.
+
+- 📧 Email notifications for due books.
+
+- 📈 Analytics dashboard for book issuance trends.
+
+## 👩🏻‍💻 Author
+
+**Your Name**  
+
+📧 [poshikamanivannan@gmail.com](mailto:your.email@example.com)  
+
+🌐 [GitHub](https://github.com/PoshikaM)
