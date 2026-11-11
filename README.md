@@ -146,6 +146,25 @@ Prisma is used as the **ORM** to simplify database access, migrations, and query
 
     Dashboard runs at http://localhost:3000.
 
+## Dockerisation Changes
+
+-  Added Frontend Dockerfile
+-  Added Backend  Dockerfile
+-  Added Docker-compose.yml
+-  Added .gitignore
+-  Added Frontend/.dockerignore
+-  Added Backend/.dockerignore
+-  Added Postgre SQL persisitent volume
+-  Deployed Application on AWS EC2
+
+## Docker Services
+
+-  Service             Port
+
+-  Front End            5173
+-  Back End             5000
+-  Postgre SQL          5432
+
 ## 🧪 Sample Data
 
 - Members: John Doe, Jane Smith
