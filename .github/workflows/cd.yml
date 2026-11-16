@@ -23,7 +23,7 @@ jobs:
 
   publish:
 
-    # Execute only if the CI workflow completed successfully
+    # Execute only if the CI workflow completed successfull
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
 
     # GitHub-hosted Linux runner
