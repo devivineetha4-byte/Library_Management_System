@@ -7,24 +7,13 @@
 name: Library Management CD
 
 on:
-
-  # Trigger this workflow when the CI workflow completes
-  workflow_run:
-
-    # Must exactly match the name used in ci.yml
-    workflows:
-      - Library Management CI
-
-    # Run when the workflow finishes
-    types:
-      - completed
-
+  push:
+    branches:
+      - dockerization 
+  
 jobs:
 
   publish:
-
-    # Execute only if the CI workflow completed successfull
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
 
     # GitHub-hosted Linux runner
     runs-on: ubuntu-latest
