@@ -20,7 +20,7 @@ const BooksManagement = () => {
   // Fetch all books
   const fetchBooks = async () => {
     try {
-      const response = await axios.get("http://localhost:5004/book", {
+      const response = await axios.get("http://3.26.54.120:5000/book", {
         headers: { Authorization: `Bearer ${API_KEY}` },
       });
       setBooks(response.data);
@@ -56,7 +56,7 @@ const handleAddBook = async (e) => {
 
         // console.log("Sending data to backend:", newBook);
 
-        const response = await axios.post("http://localhost:5004/book", newBook, {
+        const response = await axios.post("http://3.26.54.120:5000/book", newBook, {
             headers: { Authorization: `Bearer ${API_KEY}` }
         });
 
@@ -88,7 +88,7 @@ const handleEditBook = async (e) => {
             book_publisher: form.book_publisher
         };
 
-        await axios.put(`http://localhost:5004/book/${editingBookId}`, updatedBook, {
+        await axios.put(`http://3.26.54.120:5000/book/${editingBookId}`, updatedBook, {
             headers: { Authorization: `Bearer ${API_KEY}` },
         });
 
@@ -107,7 +107,7 @@ const handleDeleteBook = async (id) => {
     if (!confirmDelete) return;
 
     try {
-        await axios.delete(`http://localhost:5004/book/${id}`, {
+        await axios.delete(`http://3.26.54.120:5000/book/${id}`, {
             headers: { Authorization: `Bearer ${API_KEY}` }
         });
 

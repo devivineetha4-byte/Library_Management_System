@@ -11,7 +11,7 @@ const NeverBorrowedBooks = () => {
 
   const fetchBooks = async () => {
     try {
-      const response = await axios.get('http://localhost:5004/task/never-borrowed-books', {
+      const response = await axios.get('http://3.26.54.120:5000/task/never-borrowed-books', {
         headers: { Authorization: `Bearer ${API_KEY}` },
       });
       setBooks(response.data);

@@ -17,7 +17,7 @@ const MembersManagement = () => {
 
   const fetchMembers = async () => {
     try {
-      const response = await axios.get("http://localhost:5004/member", {
+      const response = await axios.get("http://3.26.54.120:5000/member", {
         headers: { Authorization: `Bearer ${API_KEY}` },
       });
       setMembers(response.data);
@@ -38,7 +38,7 @@ const MembersManagement = () => {
         return;
       }
       const newMember = { ...form };
-      await axios.post("http://localhost:5004/member", newMember, {
+      await axios.post("http://3.26.54.120:5000/member", newMember, {
         headers: { Authorization: `Bearer ${API_KEY}` },
       });
       fetchMembers();
@@ -57,7 +57,7 @@ const MembersManagement = () => {
         return;
       }
       const updatedMember = { ...form };
-      await axios.put(`http://localhost:5004/member/${editingMemberId}`, updatedMember, {
+      await axios.put(`http://3.26.54.120:5000/member/${editingMemberId}`, updatedMember, {
         headers: { Authorization: `Bearer ${API_KEY}` },
       });
       fetchMembers();
@@ -73,7 +73,7 @@ const MembersManagement = () => {
     const confirmDelete = window.confirm("Are you sure you want to delete this member?");
     if (!confirmDelete) return;
     try {
-      await axios.delete(`http://localhost:5004/member/${id}`, {
+      await axios.delete(`http://3.26.54.120:5000/member/${id}`, {
         headers: { Authorization: `Bearer ${API_KEY}` },
       });
       alert("Member deleted successfully!");

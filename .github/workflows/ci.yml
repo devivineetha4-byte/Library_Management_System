@@ -1,0 +1,33 @@
+name: Library Management CI
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      # Download repository contents
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # Build Frontend Docker image
+      - name: Build Frontend Image
+        run: docker build -t library-frontend ./frontend
+
+      # Build Backend Docker image
+      - name: Build Backend Image
+        run: docker build -t library-backend ./backend
+
+      # Validate docker-compose syntax
+      - name: Validate Compose
+        run: docker compose config

@@ -20,7 +20,7 @@ const IssuanceManagement = () => {
 
   const fetchIssuances = async () => {
     try {
-      const response = await axios.get("http://localhost:5004/issuance", {
+      const response = await axios.get("http://3.26.54.120:5000/issuance", {
         headers: { Authorization: `Bearer ${API_KEY}` },
       });
       setIssuances(response.data);
@@ -51,12 +51,12 @@ const IssuanceManagement = () => {
       };
 
       if (editingIssuanceId) {
-        await axios.put(`http://localhost:5004/issuance/${editingIssuanceId}`, formattedIssuance, {
+        await axios.put(`http://3.26.54.120:5000/issuance/${editingIssuanceId}`, formattedIssuance, {
           headers: { Authorization: `Bearer ${API_KEY}` },
         });
         alert("Issuance updated successfully!");
       } else {
-        await axios.post("http://localhost:5004/issuance", formattedIssuance, {
+        await axios.post("http://3.26.54.120:5000/issuance", formattedIssuance, {
           headers: { Authorization: `Bearer ${API_KEY}` },
         });
         alert("Issuance added successfully!");
@@ -85,7 +85,7 @@ const IssuanceManagement = () => {
   const handleDeleteIssuance = async (id) => {
     if (!window.confirm("Are you sure you want to delete this issuance?")) return;
     try {
-      await axios.delete(`http://localhost:5004/issuance/${id}`, {
+      await axios.delete(`http://3.26.54.120:5000/issuance/${id}`, {
         headers: { Authorization: `Bearer ${API_KEY}` },
       });
       fetchIssuances();

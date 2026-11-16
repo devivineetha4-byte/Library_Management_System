@@ -11,7 +11,7 @@ const OutstandingBooks = () => {
 
   const fetchOutstandingBooks = async () => {
     try {
-      const response = await axios.get('http://localhost:5004/task/outstanding-books', {
+      const response = await axios.get('http://3.26.54.120:5000/task/outstanding-books', {
         headers: { Authorization: `Bearer ${API_KEY}` },
       });
       setBooks(response.data);
