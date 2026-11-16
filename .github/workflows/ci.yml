@@ -22,11 +22,11 @@ jobs:
 
       # Build Frontend Docker image
       - name: Build Frontend Image
-        run: docker build -t library-frontend ./frontend
+        run: docker build -t library-frontend ./Frontend
 
       # Build Backend Docker image
       - name: Build Backend Image
-        run: docker build -t library-backend ./backend
+        run: docker build -t library-backend ./Backend
 
       # Validate docker-compose syntax
       - name: Validate Compose
