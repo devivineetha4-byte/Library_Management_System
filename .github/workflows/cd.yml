@@ -1,0 +1,71 @@
+# CD Pipeline
+# Purpose:
+# 1. Run only after CI succeeds
+# 2. Build Docker images
+# 3. Push images to Docker Hub
+
+name: Library Management CD
+
+on:
+
+  # Trigger this workflow when the CI workflow completes
+  workflow_run:
+
+    # Must exactly match the name used in ci.yml
+    workflows:
+      - Library Management CI
+
+    # Run when the workflow finishes
+    types:
+      - completed
+
+jobs:
+
+  publish:
+
+    # Execute only if the CI workflow completed successfully
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+
+    # GitHub-hosted Linux runner
+    runs-on: ubuntu-latest
+
+    steps:
+
+      # Step 1: Download source code from GitHub repository
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # Step 2: Login to Docker Hub
+      # Uses GitHub Secrets for secure authentication
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      # Step 3: Build Frontend Docker Image
+      # Tags image using Docker Hub username
+      - name: Build Frontend Image
+        run: |
+          docker build \
+            -t ${{ secrets.DOCKER_USERNAME }}/library-management-frontend:latest \
+            ./Frontend
+
+      # Step 4: Build Backend Docker Image
+      - name: Build Backend Image
+        run: |
+          docker build \
+            -t ${{ secrets.DOCKER_USERNAME }}/library-management-backend:latest \
+            ./Backend
+
+      # Step 5: Push Frontend Image to Docker Hub
+      - name: Push Frontend Image
+        run: |
+          docker push \
+            ${{ secrets.DOCKER_USERNAME }}/library-management-frontend:latest
+
+      # Step 6: Push Backend Image to Docker Hub
+      - name: Push Backend Image
+        run: |
+          docker push \
+            ${{ secrets.DOCKER_USERNAME }}/library-management-backend:latest
