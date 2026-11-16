@@ -4,12 +4,9 @@ on:
   push:
     branches:
       - dockerization
-  pull_request:
-    branches:
-     - dockerization
-
+  
 jobs:
-  build:
+  ci:
 
     runs-on: ubuntu-latest
 
@@ -30,3 +27,13 @@ jobs:
       # Validate docker-compose syntax
       - name: Validate Compose
         run: docker compose config
+
+
+      # Start Containers
+      - name: Start Containers
+        run: docker compose up -d
+
+      # Check Containers
+      - name: Check Containers
+        run: docker ps
+
